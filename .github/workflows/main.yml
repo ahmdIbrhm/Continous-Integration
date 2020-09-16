@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: CI-Testing
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -22,12 +22,28 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
+      - name: Cache npm
+        id: cache-npm
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: npm-cache
+        
       - name: Install npm
-        run: |
-          sudo apt install npm
-          npm version
+        if: steps.cache-npm.outputs.cache-hit != 'true'
+        run: npm install
+          
+      - name: Cache jest
+        id: cache-jest
+        uses: actions/cache@v2
+        with:
+          path: .jest-cache
+          key: jest-cache
+          
       # Runs a single command using the runners shell
       - name: Intsall Jest
+#         if: steps.cache-jest.outputs.cache-hit != 'true' 
         run: npm install --save-dev jest
+      
       - name: Run tests
         run: npm run test

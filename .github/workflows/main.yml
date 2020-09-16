@@ -42,7 +42,7 @@ jobs:
           
       # Runs a single command using the runners shell
       - name: Intsall Jest
-        if: steps.cache-jest.outputs.cache-hit != 'true' 
+#         if: steps.cache-jest.outputs.cache-hit != 'true' 
         run: npm install --save-dev jest
       
       - name: Run tests

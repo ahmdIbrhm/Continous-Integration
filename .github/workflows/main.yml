@@ -29,3 +29,5 @@ jobs:
       # Runs a single command using the runners shell
       - name: Intsall Jest
         run: npm install --save-dev jest
+      - name: Run tests
+        run: npm run test

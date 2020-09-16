@@ -25,11 +25,11 @@ jobs:
       - name: Install npm
         run: |
           sudo apt install npm
-          npm ––version
+          npm version
       - name: Install yarn
         run: |
           sudo npm install yarn –g
-          yarn ––version
+          yarn version
       # Runs a single command using the runners shell
       - name: Intsall Jest
         run: yarn add --dev jest

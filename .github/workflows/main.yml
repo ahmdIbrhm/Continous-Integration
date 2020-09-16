@@ -25,14 +25,19 @@ jobs:
       - name: Cache npm
         uses: actions/cache@v2
         with:
-          # npm cache files are stored in `~/.npm` on Linux/macOS
           path: ~/.npm
           key: npm-cache
         
       - name: Install npm
         run: |
           npm install
-        
+          
+      - name: Cache jest
+        uses: actions/cache@v2
+        with:
+          path: .jest-cache
+          key: jest-cache
+          
       # Runs a single command using the runners shell
       - name: Intsall Jest
         run: npm install --save-dev jest

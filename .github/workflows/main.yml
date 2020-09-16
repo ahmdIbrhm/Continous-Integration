@@ -22,10 +22,16 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
+      - name: Cache npm
+        uses: actions/cache@v2
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ~/.npm
+        
       - name: Install npm
         run: |
-          sudo apt install npm
-          npm version
+          npm install
+        
       # Runs a single command using the runners shell
       - name: Intsall Jest
         run: npm install --save-dev jest
